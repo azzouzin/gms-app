@@ -1,18 +1,21 @@
+import 'package:floating_navbar/floating_navbar.dart';
+import 'package:floating_navbar/floating_navbar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
-import 'constants.dart';
+import '../Compenents/app_bar.dart';
+import '../constants.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> {
   late VideoPlayerController _controller;
 
   @override
@@ -23,7 +26,7 @@ class _HomePageState extends State<HomePage> {
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {
-          //  _controller.pause();
+          _controller.play();
         });
       });
   }
@@ -50,43 +53,25 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: BottomBar(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                "This is the floating widget",
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-            body: (context, controller) => mainWidget(),
-          ),
+          child: mainWidget(),
         ),
       ),
-      /* bottomNavigationBar: BottomBar(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              "This is the floating widget",
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-          body: (context, controller) =>
-              InfiniteListPage(controller: controller, color: Colors.blue,),
-    ),*/
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            _controller.value.isPlaying
-                ? _controller.pause()
-                : _controller.play();
-          });
-        },
-        child: Icon(
-          _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-        ),
+      /*  bottomNavigationBar: FloatingNavBar(
+        resizeToAvoidBottomInset: false,
+        color: Colors.green,
+        selectedIconColor: Colors.white,
+        unselectedIconColor: Colors.white.withOpacity(0.6),
+        items: [
+          FloatingNavBarItem(iconData: Icons.home_outlined, page: HomePage(), title: 'Home'),
+          FloatingNavBarItem(iconData: Icons.local_hospital_outlined, page: HomePage(), title: 'Doctors'),
+          FloatingNavBarItem(iconData: Icons.alarm, page: HomePage(), title: 'Reminders'),
+          FloatingNavBarItem(iconData: Icons.pending_actions_outlined, page: HomePage(), title: 'Records'),
+        ],
+        horizontalPadding: 10.0,
+        hapticFeedback: true,
+        showTitle: true,
       ),
+    */
     );
   }
 
@@ -112,64 +97,62 @@ class _HomePageState extends State<HomePage> {
               searchbare(),
               Align(
                 alignment: Alignment.center,
-                child: Container(
+                child: SizedBox(
                   width: Get.width * 0.9,
                   height: Get.height * 0.25,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 0.5, color: Colors.grey),
-                    boxShadow: [
-                      BoxShadow(
-                          spreadRadius: 2,
-                          color: Colors.black.withOpacity(0.1),
-                          blurRadius: 2,
-                          offset: const Offset(0, 5))
-                    ],
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: _controller.value.isInitialized
-                      ? ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: AspectRatio(
-                            aspectRatio: _controller.value.aspectRatio,
-                            child: VideoPlayer(_controller),
-                          ),
-                        )
-                      : Container(),
-                ),
-              ),
-              Align(
-                alignment: Alignment.topCenter,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  margin: const EdgeInsets.only(bottom: 10),
-                  width: Get.width,
-                  height: Get.height * 0.1,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(40),
-                        bottomRight: Radius.circular(40)),
-                    color: Colors.white,
-                  ),
-                  child: Row(
+                  child: Stack(
                     children: [
-                      Image.asset(
-                        'assets/logo.png',
-                        fit: BoxFit.fill,
+                      Container(
+                        width: Get.width * 0.9,
+                        height: Get.height * 0.25,
+                        decoration: BoxDecoration(
+                          border: Border.all(width: 0.5, color: Colors.grey),
+                          boxShadow: [
+                            BoxShadow(
+                                spreadRadius: 2,
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 2,
+                                offset: const Offset(0, 5))
+                          ],
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: _controller.value.isInitialized
+                            ? ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: AspectRatio(
+                                  aspectRatio: _controller.value.aspectRatio,
+                                  child: VideoPlayer(_controller),
+                                ),
+                              )
+                            : Container(),
                       ),
-                      const Text(
-                        "General Maintanance Service",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: FloatingActionButton(
+                            backgroundColor: bgColor,
+                            onPressed: () {
+                              setState(() {
+                                _controller.value.isPlaying
+                                    ? _controller.pause()
+                                    : _controller.play();
+                              });
+                            },
+                            child: Icon(
+                              _controller.value.isPlaying
+                                  ? Icons.pause
+                                  : Icons.play_arrow,
+                            ),
+                          ),
+                        ),
                       ),
-                      Expanded(child: Container()),
-                      IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.more_horiz_sharp))
                     ],
                   ),
                 ),
               ),
+              MyAppBare(),
             ],
           ),
         ),
@@ -257,25 +240,23 @@ class _HomePageState extends State<HomePage> {
 
   Container card(String e) {
     return Container(
-      width: Get.width * 0.3,
-      height: Get.width * 0.25,
+      width: Get.width * 0.4,
+      height: Get.width * 0.3,
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        gradient: const LinearGradient(
-          begin: Alignment.bottomCenter,
-          end: Alignment.topCenter,
-          colors: [
-            Colors.white,
-            Colors.white,
-            Colors.transparent,
-          ],
-        ),
+        boxShadow: [
+          BoxShadow(
+              spreadRadius: 2,
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 2,
+              offset: const Offset(0, 5))
+        ],
       ),
       child: Stack(children: [
         Container(
-          width: Get.width * 0.3,
-          height: Get.width * 0.25,
+          width: Get.width * 0.4,
+          height: Get.width * 0.3,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Image.asset(
@@ -285,9 +266,10 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         Container(
-          width: Get.width * 0.3,
-          height: Get.width * 0.25,
+          width: Get.width * 0.4,
+          height: Get.width * 0.3,
           decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
             gradient: LinearGradient(
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,

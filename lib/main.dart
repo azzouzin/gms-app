@@ -1,5 +1,11 @@
+import 'package:floating_navbar/floating_navbar.dart';
+import 'package:floating_navbar/floating_navbar_item.dart';
 import 'package:flutter/material.dart';
-import 'package:gms_app/View/home_page.dart';
+import 'package:gms_app/View/constants.dart';
+import 'package:gms_app/View/NavPages/home_page.dart';
+import 'package:gms_app/View/NavPages/products_page.dart';
+
+import 'View/NavPages/courses_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,25 +20,33 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: FloatingNavBar(
+        resizeToAvoidBottomInset: false,
+        color: Colors.white,
+        selectedIconColor: maink,
+        unselectedIconColor: Colors.grey.withOpacity(0.6),
+        borderRadius: 50,
+        items: [
+          FloatingNavBarItem(
+              iconData: Icons.home_outlined, page: HomePage(), title: 'Home'),
+          FloatingNavBarItem(
+              iconData: Icons.production_quantity_limits,
+              page: ProductsPage(),
+              title: 'Products'),
+          FloatingNavBarItem(
+              iconData: Icons.alarm, page: CoursesPage(), title: 'Courses'),
+          FloatingNavBarItem(
+              iconData: Icons.pending_actions_outlined,
+              page: HomePage(),
+              title: 'Records'),
+        ],
+        horizontalPadding: 20.0,
+        hapticFeedback: true,
+        showTitle: false,
+      ),
     );
   }
 }
