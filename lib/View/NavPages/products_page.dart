@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gms_app/View/Compenents/app_bar.dart';
@@ -14,25 +16,75 @@ class ProductsPage extends StatefulWidget {
 }
 
 class _ProductsPageState extends State<ProductsPage> {
+  final listOfProducts = [
+    'assets/1.png',
+    'assets/2.png',
+    'assets/3.jpg',
+    'assets/4.png',
+    'assets/5.png',
+    'assets/6.png',
+    'assets/7.png',
+  ];
+  final listOfPrices = [
+    '2000.00',
+    '150.00',
+    '16000.00',
+    '7500.00',
+    '1055.00',
+    '9200.00',
+    '600.00',
+  ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: bgColor,
-        body: Column(
-          children: [
-            const MyAppBare(),
-            verticalSpace,
-            searchbare(),
-            verticalSpace,
-            card('200.00')
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const MyAppBare(),
+              verticalSpace,
+              searchbare(),
+              verticalSpace,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    children: [
+                      ...listOfProducts.map((e) {
+                        log(listOfProducts.indexOf(e).toString());
+                        return listOfProducts.indexOf(e) % 2 == 0
+                            ? card(
+                                listOfPrices[listOfProducts.indexOf(e)],
+                                e,
+                              )
+                            : SizedBox();
+                      }).toList()
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      ...listOfProducts.map((e) {
+                        return listOfProducts.indexOf(e) % 2 != 0
+                            ? card(
+                                listOfPrices[listOfProducts.indexOf(e)],
+                                e,
+                              )
+                            : SizedBox();
+                      }).toList()
+                    ],
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Container card(String e) {
+  Container card(String e, String imagepath) {
     return Container(
       width: Get.width * 0.4,
       height: Get.width * 0.3,
@@ -53,13 +105,18 @@ class _ProductsPageState extends State<ProductsPage> {
             //width: Get.width * 0.4,
             child: Container(
               width: Get.width * 0.4,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20))),
               child: ClipRRect(
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
                 ),
                 child: Image.asset(
-                  'assets/pipe.jpg',
+                  imagepath,
                   fit: BoxFit.contain,
                 ),
               ),
