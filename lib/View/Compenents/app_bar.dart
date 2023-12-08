@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 class MyAppBare extends StatelessWidget {
   const MyAppBare({
     super.key,
+    required this.scaffoldKey,
   });
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,10 @@ class MyAppBare extends StatelessWidget {
             ),
             Expanded(child: Container()),
             IconButton(
-                onPressed: () {}, icon: const Icon(Icons.more_horiz_sharp))
+                onPressed: () {
+                  scaffoldKey.currentState?.openDrawer();
+                },
+                icon: const Icon(Icons.more_horiz_sharp))
           ],
         ),
       ),

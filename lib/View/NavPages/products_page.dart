@@ -16,6 +16,8 @@ class ProductsPage extends StatefulWidget {
 }
 
 class _ProductsPageState extends State<ProductsPage> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   final listOfProducts = [
     'assets/1.png',
     'assets/2.png',
@@ -42,7 +44,9 @@ class _ProductsPageState extends State<ProductsPage> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              const MyAppBare(),
+              MyAppBare(
+                scaffoldKey: _scaffoldKey,
+              ),
               verticalSpace,
               searchbare(),
               verticalSpace,

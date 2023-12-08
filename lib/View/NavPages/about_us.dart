@@ -14,6 +14,8 @@ class AbooutUs extends StatefulWidget {
 }
 
 class _AbooutUsState extends State<AbooutUs> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +25,9 @@ class _AbooutUsState extends State<AbooutUs> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const MyAppBare(),
+              MyAppBare(
+                scaffoldKey: _scaffoldKey,
+              ),
               verticalSpace,
               whoAreWe(),
               verticalSpace,

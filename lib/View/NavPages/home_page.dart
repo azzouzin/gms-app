@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
 import '../Compenents/app_bar.dart';
+import '../Compenents/drawer.dart';
 import '../constants.dart';
 
 class HomePage extends StatefulWidget {
@@ -48,9 +49,12 @@ class HomePageState extends State<HomePage> {
     'البستنة',
     'كاميرات المراقبة',
   ];
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: MyDrawer(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: mainWidget(),
@@ -152,7 +156,9 @@ class HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              MyAppBare(),
+              MyAppBare(
+                scaffoldKey: _scaffoldKey,
+              ),
             ],
           ),
         ),
@@ -226,8 +232,8 @@ class HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            SizedBox(width: 10),
-            Icon(
+            const SizedBox(width: 10),
+            const Icon(
               Icons.search,
               size: 25,
               color: maink,

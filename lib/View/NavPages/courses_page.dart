@@ -11,6 +11,8 @@ class CoursesPage extends StatefulWidget {
 }
 
 class _CoursesPageState extends State<CoursesPage> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   final listOfCourses = [
     'دورة تكوينية شاملة في السباكة',
     'دورة تكوينية شاملة في الكهرباء',
@@ -41,7 +43,9 @@ class _CoursesPageState extends State<CoursesPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const MyAppBare(),
+              MyAppBare(
+                scaffoldKey: _scaffoldKey,
+              ),
               ...listOfCourses
                   .map(
                       (e) => corseCard(e, listOfImgs[listOfCourses.indexOf(e)]))
