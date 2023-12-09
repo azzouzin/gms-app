@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../View/Compenents/app_bar.dart';
 import '../View/constants.dart';
@@ -14,7 +17,7 @@ class WorkWithUs extends StatefulWidget {
 
 class _WorkWithUsState extends State<WorkWithUs> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-
+  File? imageFile;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,11 +41,40 @@ class _WorkWithUsState extends State<WorkWithUs> {
           padding: const EdgeInsets.all(8.0),
           child: title('طلب  العمل ', Iconsax.activity),
         ),
-        textField('Name', name),
+        textField('الاسم و اللقب', name, Icons.person),
         verticalSpace,
-        textField('birthdate', birthdate),
+        textField('رقم الهاتف', birthdate, Icons.phone),
         verticalSpace,
-        textField('email', email),
+        textField('الايمايل', email, Icons.email),
+        verticalSpace,
+        InkWell(
+          onTap: () {
+            setState(() {
+              _openImagePicker();
+            });
+            setState(() {});
+          },
+          child: Container(
+            width: Get.width * 0.9,
+            height: Get.height * 0.15,
+            decoration: BoxDecoration(
+                border: Border.all(width: 0.5, color: Colors.grey),
+                boxShadow: [
+                  BoxShadow(
+                      spreadRadius: 2,
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 2,
+                      offset: const Offset(0, 5))
+                ],
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20)),
+            child: Center(
+              child: Text(imageFile == null
+                  ? 'اظغط هنا لتحميل الشهادات ان وجدت '
+                  : 'تم تحميل الشهادات'),
+            ),
+          ),
+        ),
         Expanded(child: SizedBox()),
         ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -54,7 +86,7 @@ class _WorkWithUsState extends State<WorkWithUs> {
               Get.back();
               Get.snackbar(
                 'تم إرسال طلبك بنجاح ',
-                'message',
+                'سنقوم برد عليك في أقرب  وقت',
                 snackPosition: SnackPosition.BOTTOM,
                 backgroundColor: Colors.greenAccent.withOpacity(0.5),
               );
@@ -69,6 +101,15 @@ class _WorkWithUsState extends State<WorkWithUs> {
         verticalSpace,
       ],
     );
+  }
+
+  Future<void> _openImagePicker() async {
+    final XFile? pickedImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      imageFile = File(pickedImage.path);
+      // Do something with the image file
+    }
   }
 
   Row title(String t, IconData iconData) {
@@ -91,12 +132,13 @@ class _WorkWithUsState extends State<WorkWithUs> {
     );
   }
 
-  Padding textField(String tit, TextEditingController editingController) {
+  Padding textField(
+      String tit, TextEditingController editingController, IconData iconData) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Column(
         children: [
-          title(tit, Icons.person),
+          title(tit, iconData),
           Container(
             width: Get.width * 0.9,
             height: 50,

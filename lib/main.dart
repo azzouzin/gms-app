@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:gms_app/View/constants.dart';
 import 'package:gms_app/View/NavPages/home_page.dart';
 import 'package:gms_app/View/NavPages/products_page.dart';
+import 'package:iconsax/iconsax.dart';
 
 import 'View/NavPages/about_us.dart';
 import 'View/NavPages/courses_page.dart';
@@ -39,9 +40,9 @@ class MyApp extends StatelessWidget {
               page: ProductsPage(),
               title: 'Products'),
           FloatingNavBarItem(
-              iconData: Icons.alarm, page: CoursesPage(), title: 'Courses'),
+              iconData: Iconsax.pen_add, page: CoursesPage(), title: 'Courses'),
           FloatingNavBarItem(
-              iconData: Icons.pending_actions_outlined,
+              iconData: Iconsax.info_circle,
               page: AbooutUs(),
               title: 'about us'),
         ],

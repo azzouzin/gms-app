@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gms_app/View/Compenents/app_bar.dart';
 import 'package:gms_app/View/constants.dart';
+import 'package:iconsax/iconsax.dart';
+
+import '../Compenents/drawer.dart';
 
 class CoursesPage extends StatefulWidget {
   const CoursesPage({super.key});
@@ -38,7 +41,9 @@ class _CoursesPageState extends State<CoursesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: bgColor,
+      drawer: MyDrawer(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -46,6 +51,11 @@ class _CoursesPageState extends State<CoursesPage> {
               MyAppBare(
                 scaffoldKey: _scaffoldKey,
               ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: title('الدورات', Iconsax.pen_add),
+              ),
+              verticalSpace,
               ...listOfCourses
                   .map(
                       (e) => corseCard(e, listOfImgs[listOfCourses.indexOf(e)]))
@@ -118,6 +128,26 @@ class _CoursesPageState extends State<CoursesPage> {
           ),
         ),
       ),
+    );
+  }
+
+  Row title(String t, IconData iconData) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Text(
+          t,
+          style: const TextStyle(
+              fontSize: 25, fontWeight: FontWeight.bold, color: maink),
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        Icon(
+          iconData,
+          color: maink,
+        ),
+      ],
     );
   }
 }

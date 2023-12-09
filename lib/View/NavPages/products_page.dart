@@ -6,6 +6,7 @@ import 'package:gms_app/View/Compenents/app_bar.dart';
 import 'package:gms_app/View/NavPages/home_page.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../Compenents/drawer.dart';
 import '../constants.dart';
 
 class ProductsPage extends StatefulWidget {
@@ -40,7 +41,9 @@ class _ProductsPageState extends State<ProductsPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: _scaffoldKey,
         backgroundColor: bgColor,
+        drawer: MyDrawer(),
         body: SingleChildScrollView(
           child: Column(
             children: [

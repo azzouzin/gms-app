@@ -5,6 +5,7 @@ import 'package:gms_app/View/constants.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../Compenents/app_bar.dart';
+import '../Compenents/drawer.dart';
 
 class AbooutUs extends StatefulWidget {
   const AbooutUs({super.key});
@@ -14,11 +15,13 @@ class AbooutUs extends StatefulWidget {
 }
 
 class _AbooutUsState extends State<AbooutUs> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  var _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: MyDrawer(),
       backgroundColor: bgColor,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -70,12 +73,12 @@ class _AbooutUsState extends State<AbooutUs> {
               verticalSpace,
               ContactUs(
                 logo: AssetImage('assets/logo.png'),
-                email: 'adoshi26.ad@gmail.com',
+                email: 'gmsmaintenance2024@gmail.com',
                 companyName: 'Gms',
-                phoneNumber: '+213562413935',
+                phoneNumber: '+213659977490',
                 dividerThickness: 2,
                 dividerColor: const Color.fromARGB(255, 117, 116, 116),
-                website: 'https://abhishekdoshi.godaddysites.com',
+                // website: 'https://abhishekdoshi.godaddysites.com',
                 //  githubUserName: 'AbhishekDoshi26',
                 companyFontSize: 30,
                 tagLine: 'General Maintanance Service',

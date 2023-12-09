@@ -32,10 +32,15 @@ class MyAppBare extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Image.asset(
-              'assets/logo.png',
-              fit: BoxFit.fill,
+            SizedBox(
+              width: 50,
+              height: 50,
+              child: Image.asset(
+                'assets/logo.png',
+                fit: BoxFit.fill,
+              ),
             ),
+            SizedBox(width: 10),
             const Text(
               "General Maintanance Service",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
@@ -43,7 +48,10 @@ class MyAppBare extends StatelessWidget {
             Expanded(child: Container()),
             IconButton(
                 onPressed: () {
+                  print('OPEN DRAWER');
+
                   scaffoldKey.currentState?.openDrawer();
+                  // scaffoldKey.currentState!.isDrawerOpen;
                 },
                 icon: const Icon(Icons.more_horiz_sharp))
           ],

@@ -3,6 +3,7 @@ import 'package:floating_navbar/floating_navbar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
 import 'package:get/get.dart';
+import 'package:gms_app/FormPages/demand_service.dart';
 import 'package:video_player/video_player.dart';
 
 import '../Compenents/app_bar.dart';
@@ -22,8 +23,7 @@ class HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.networkUrl(Uri.parse(
-        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4'))
+    _controller = VideoPlayerController.asset('assets/v.mp4')
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {
@@ -48,6 +48,17 @@ class HomePageState extends State<HomePage> {
     'النجار',
     'البستنة',
     'كاميرات المراقبة',
+  ];
+  final listOfImgs = [
+    'assets/sibaka.jpg',
+    'assets/kahraba2.jpg',
+    'assets/painter.jpg',
+    'assets/bana2.png',
+    'assets/jabs.jpg',
+    'assets/hadad.jpg',
+    'assets/njar.jpg',
+    'assets/bostan.jpg',
+    'assets/camera.jpg',
   ];
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
@@ -176,7 +187,7 @@ class HomePageState extends State<HomePage> {
                 children: [
                   ...listofService.map((e) {
                     return listofService.indexOf(e) % 2 == 0
-                        ? card(e)
+                        ? card(e, listOfImgs[listofService.indexOf(e)])
                         : Container();
                   }).toList(),
                 ],
@@ -187,7 +198,7 @@ class HomePageState extends State<HomePage> {
                 children: [
                   ...listofService.map((e) {
                     return listofService.indexOf(e) % 2 != 0
-                        ? card(e)
+                        ? card(e, listOfImgs[listofService.indexOf(e)])
                         : Container();
                   }).toList(),
                 ],
@@ -244,54 +255,59 @@ class HomePageState extends State<HomePage> {
     );
   }
 
-  Container card(String e) {
-    return Container(
-      width: Get.width * 0.4,
-      height: Get.width * 0.3,
-      margin: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-              spreadRadius: 2,
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 2,
-              offset: const Offset(0, 5))
-        ],
+  InkWell card(String e, String imagepath) {
+    return InkWell(
+      onTap: () {
+        Get.to(DemandForm(khidma: e));
+      },
+      child: Container(
+        width: Get.width * 0.4,
+        height: Get.width * 0.3,
+        margin: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+                spreadRadius: 2,
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 2,
+                offset: const Offset(0, 5))
+          ],
+        ),
+        child: Stack(children: [
+          Container(
+            width: Get.width * 0.4,
+            height: Get.width * 0.3,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                imagepath,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Container(
+            width: Get.width * 0.4,
+            height: Get.width * 0.3,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [
+                  Colors.white,
+                  Colors.white.withOpacity(0.2),
+                  Colors.transparent,
+                ],
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Text(e),
+          ),
+        ]),
       ),
-      child: Stack(children: [
-        Container(
-          width: Get.width * 0.4,
-          height: Get.width * 0.3,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Image.asset(
-              'assets/pipe.jpg',
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        Container(
-          width: Get.width * 0.4,
-          height: Get.width * 0.3,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            gradient: LinearGradient(
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-              colors: [
-                Colors.white,
-                Colors.white.withOpacity(0.2),
-                Colors.transparent,
-              ],
-            ),
-          ),
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Text(e),
-        ),
-      ]),
     );
   }
 }
