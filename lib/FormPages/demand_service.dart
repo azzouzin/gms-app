@@ -206,7 +206,7 @@ class _DemandFormState extends State<DemandForm> {
       scheme: 'mailto',
       path: 'gmsmaintenance2024@gmail.com',
       query: encodeQueryParameters(<String, String>{
-        'subject': 'طلب خدمة ${widget.khidma}',
+        'subject': 'طلب خدمة ${widget.khidma}  لل$value ',
         'body':
             'رقم هاتفك هو : ${phone.text}\n الاسم و اللقب   : ${name.text} \n وصف العطل هو : ${email.text}',
       }),
