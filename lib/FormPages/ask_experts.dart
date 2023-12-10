@@ -39,7 +39,7 @@ class _ASkExpertsState extends State<AskExperts> {
           child: title('إسأل  الصيانة', Iconsax.message_question),
         ),
         Container(
-          width: Get.width * 0.9,
+          width: 500 * 0.9,
           height: Get.height * 0.25,
           decoration: BoxDecoration(
               border: Border.all(width: 0.5, color: Colors.grey),
@@ -69,7 +69,7 @@ class _ASkExpertsState extends State<AskExperts> {
         ElevatedButton(
           style: ElevatedButton.styleFrom(
               backgroundColor: maink,
-              fixedSize: Size(Get.width * 0.9, Get.height * 0.075),
+              fixedSize: Size(500 * 0.9, Get.height * 0.075),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10))),
           onPressed: () {

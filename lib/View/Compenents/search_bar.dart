@@ -14,7 +14,7 @@ class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Get.width * 0.9,
+      width: 500 * 0.9,
       height: Get.height * 0.075,
       decoration: BoxDecoration(
           border: Border.all(width: 0.5, color: Colors.grey),
@@ -31,7 +31,7 @@ class _SearchBarState extends State<SearchBar> {
         child: Row(
           children: [
             SizedBox(
-              width: Get.width * 0.77,
+              width: 500 * 0.77,
               child: const Directionality(
                 textDirection: TextDirection.rtl,
                 child: TextField(

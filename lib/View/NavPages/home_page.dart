@@ -26,9 +26,13 @@ class HomePageState extends State<HomePage> {
     _controller = VideoPlayerController.asset('assets/v.mp4')
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        setState(() {
-          _controller.play();
-        });
+        /*  try {
+          setState(() {
+            _controller.play();
+          });
+        } catch (e) {
+          print(e);
+        }*/
       });
   }
 
@@ -94,14 +98,14 @@ class HomePageState extends State<HomePage> {
     return Column(
       children: [
         Container(
-          width: Get.width,
+          width: 500,
           height: Get.height * 0.5,
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [
               Container(
                 margin: const EdgeInsets.only(bottom: 10),
-                width: Get.width,
+                width: 500,
                 height: Get.height * 0.45,
                 decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 0, 71, 129),
@@ -113,12 +117,12 @@ class HomePageState extends State<HomePage> {
               Align(
                 alignment: Alignment.center,
                 child: SizedBox(
-                  width: Get.width * 0.9,
+                  width: 500 * 0.9,
                   height: Get.height * 0.25,
                   child: Stack(
                     children: [
                       Container(
-                        width: Get.width * 0.9,
+                        width: 500 * 0.9,
                         height: Get.height * 0.25,
                         decoration: BoxDecoration(
                           border: Border.all(width: 0.5, color: Colors.grey),
@@ -212,7 +216,7 @@ class HomePageState extends State<HomePage> {
 
   Container searchbare() {
     return Container(
-      width: Get.width * 0.9,
+      width: 500 * 0.9,
       height: Get.height * 0.075,
       decoration: BoxDecoration(
           border: Border.all(width: 0.5, color: Colors.grey),
@@ -229,7 +233,7 @@ class HomePageState extends State<HomePage> {
         child: Row(
           children: [
             SizedBox(
-              width: Get.width * 0.77,
+              width: 500 * 0.77,
               child: const Directionality(
                 textDirection: TextDirection.rtl,
                 child: TextField(
@@ -261,8 +265,8 @@ class HomePageState extends State<HomePage> {
         Get.to(DemandForm(khidma: e));
       },
       child: Container(
-        width: Get.width * 0.4,
-        height: Get.width * 0.3,
+        width: 500 * 0.4,
+        height: 500 * 0.3,
         margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
@@ -276,8 +280,8 @@ class HomePageState extends State<HomePage> {
         ),
         child: Stack(children: [
           Container(
-            width: Get.width * 0.4,
-            height: Get.width * 0.3,
+            width: 500 * 0.4,
+            height: 500 * 0.3,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Image.asset(
@@ -287,8 +291,8 @@ class HomePageState extends State<HomePage> {
             ),
           ),
           Container(
-            width: Get.width * 0.4,
-            height: Get.width * 0.3,
+            width: 500 * 0.4,
+            height: 500 * 0.3,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               gradient: LinearGradient(

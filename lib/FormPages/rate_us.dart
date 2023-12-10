@@ -32,13 +32,13 @@ class _RateUSState extends State<RateUS> {
             body('تقييمك يساعدنا في تحسين خدماتنا'),
             verticalSpace,
             SizedBox(
-              width: Get.width * 0.9,
+              width: 500 * 0.9,
               height: Get.height * 0.4,
               child: Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
                   Container(
-                    width: Get.width * 0.9,
+                    width: 500 * 0.9,
                     height: Get.height * 0.35,
                     decoration: BoxDecoration(
                         border: Border.all(width: 0.5, color: Colors.grey),
@@ -102,7 +102,7 @@ class _RateUSState extends State<RateUS> {
                   Align(
                     alignment: Alignment.topCenter,
                     child: Container(
-                      width: Get.width * 0.7,
+                      width: 500 * 0.7,
                       height: Get.height * 0.1,
                       decoration: BoxDecoration(
                           border: Border.all(width: 0.5, color: Colors.grey),
@@ -136,7 +136,7 @@ class _RateUSState extends State<RateUS> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: maink,
-                  fixedSize: Size(Get.width * 0.9, Get.height * 0.075),
+                  fixedSize: Size(500 * 0.9, Get.height * 0.075),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10))),
               onPressed: () {
@@ -178,13 +178,13 @@ class _RateUSState extends State<RateUS> {
         body('تقييمك يساعدنا في تحسين خدماتنا'),
         verticalSpace,
         SizedBox(
-          width: Get.width * 0.9,
+          width: 500 * 0.9,
           height: Get.height * 0.4,
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [
               Container(
-                width: Get.width * 0.9,
+                width: 500 * 0.9,
                 height: Get.height * 0.35,
                 decoration: BoxDecoration(
                     border: Border.all(width: 0.5, color: Colors.grey),
@@ -248,7 +248,7 @@ class _RateUSState extends State<RateUS> {
               Align(
                 alignment: Alignment.topCenter,
                 child: Container(
-                  width: Get.width * 0.7,
+                  width: 500 * 0.7,
                   height: Get.height * 0.1,
                   decoration: BoxDecoration(
                       border: Border.all(width: 0.5, color: Colors.grey),
@@ -282,7 +282,7 @@ class _RateUSState extends State<RateUS> {
         ElevatedButton(
           style: ElevatedButton.styleFrom(
               backgroundColor: maink,
-              fixedSize: Size(Get.width * 0.9, Get.height * 0.075),
+              fixedSize: Size(500 * 0.9, Get.height * 0.075),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10))),
           onPressed: () {

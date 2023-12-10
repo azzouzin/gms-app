@@ -45,6 +45,7 @@ class _DemandFormState extends State<DemandForm> {
       backgroundColor: bgColor,
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             MyAppBare(
               scaffoldKey: _scaffoldKey,
@@ -67,7 +68,7 @@ class _DemandFormState extends State<DemandForm> {
                 setState(() {});
               },
               child: Container(
-                width: Get.width * 0.9,
+                width: 500 * 0.9,
                 height: Get.height * 0.15,
                 decoration: BoxDecoration(
                     border: Border.all(width: 0.5, color: Colors.grey),
@@ -89,7 +90,7 @@ class _DemandFormState extends State<DemandForm> {
             ),
             verticalSpace,
             Container(
-              width: Get.width * 0.9,
+              width: 500 * 0.9,
               child: DropdownButton(
                   isExpanded: true,
                   dropdownColor: Colors.white,
@@ -113,7 +114,7 @@ class _DemandFormState extends State<DemandForm> {
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     backgroundColor: maink,
-                    fixedSize: Size(Get.width * 0.9, Get.height * 0.075),
+                    fixedSize: Size(500 * 0.9, Get.height * 0.075),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
                 onPressed: () async {
@@ -130,7 +131,7 @@ class _DemandFormState extends State<DemandForm> {
                 'text':
                     'Dear {{name}}, this is mail body text with placeholders in body {{ph1}} and {{ph2}}',
               };
-
+        
               var resp = await http.post(
                   Uri.parse('https://xlr8x3.api.infobip.com/email/3/send'),
                   headers: {
@@ -142,14 +143,14 @@ class _DemandFormState extends State<DemandForm> {
               print(resp.body);
               print(resp.statusCode);*/
                   //  Get.back();
-                  /*  String? encodeQueryParameters(Map<String, String> params) {
-                return params.entries
-                    .map((MapEntry<String, String> e) =>
-                        '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
-                    .join('&');
-              }
-*/
-                  final Email email = Email(
+                  String? encodeQueryParameters(Map<String, String> params) {
+                    return params.entries
+                        .map((MapEntry<String, String> e) =>
+                            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+                        .join('&');
+                  }
+
+                  /* final Email email = Email(
                     body:
                         'رقم هاتفك هو : ${phone.text}\n الاسم و اللقب   : ${name.text} \n وصف العطل هو : ${wasf.text}',
                     subject: 'طلب خدمة ${widget.khidma}  لل$value ',
@@ -159,11 +160,12 @@ class _DemandFormState extends State<DemandForm> {
                     attachmentPaths: imageFile == null ? [] : [imageFile!.path],
                     isHTML: false,
                   );
+        
+                  await FlutterEmailSender.send(email);*/
 
-                  await FlutterEmailSender.send(email);
-
-// ···
-                  //   await sendEmailurlLuncher(phone, encodeQueryParameters, name, email);
+                  // ···
+                  await sendEmailurlLuncher(
+                      phone, encodeQueryParameters, name, wasf);
 
                   /*    bool b = await canLaunchUrl(emailLaunchUri);
               if (b) {
@@ -171,7 +173,7 @@ class _DemandFormState extends State<DemandForm> {
               } else {
                 log(b.toString());
               }
-      */
+            */
                   Get.snackbar(
                     'تم إرسال طلبك بنجاح ',
                     'سنقوم برد عليك في أقرب  وقت',
@@ -244,7 +246,7 @@ class _DemandFormState extends State<DemandForm> {
         children: [
           title(tit, iconData),
           Container(
-            width: Get.width * 0.9,
+            width: 500 * 0.9,
             height: 50,
             decoration: BoxDecoration(
                 border: Border.all(width: 0.5, color: Colors.grey),
@@ -288,76 +290,6 @@ class _DemandFormState extends State<DemandForm> {
     if (pickedImage != null) {
       imageFile = File(pickedImage.path);
       // Do something with the image file
-    }
-  }
-
-  Future<void> sendEmail() async {
-    final String BASE_URL = "https://xlr8x3.api.infobip.com";
-    final String API_KEY =
-        "App b5cd4bf881bf69bd5271fe714b9466b7-678bf070-36bc-4875-b1b8-eb5edaf937fe";
-
-    final String SENDER_EMAIL = "merouaniadh@gmail.com";
-    final String RECIPIENT_EMAIL = "azzouzmerw@gmail.com";
-    final String EMAIL_SUBJECT = "This is a sample email subject";
-    final String EMAIL_TEXT = "This is a sample email message.";
-
-    final String BASE_FILE_PATH = "/home/infobip/project/src/email/files";
-    final String file_name = "infobip.png";
-
-    final File file = File('$BASE_FILE_PATH/$file_name');
-    final http.MultipartRequest request =
-        http.MultipartRequest('POST', Uri.parse('$BASE_URL/email/3/send'));
-
-    request.headers.addAll({'Authorization': API_KEY});
-    request.fields.addAll({
-      'from': SENDER_EMAIL,
-      'to': RECIPIENT_EMAIL,
-      'subject': EMAIL_SUBJECT,
-      'text': EMAIL_TEXT,
-    });
-    request.files
-        .add(await http.MultipartFile.fromPath('attachment', imageFile!.path));
-
-    final http.StreamedResponse response = await request.send();
-
-    if (response.statusCode == 200) {
-      print('Email sent successfully!');
-      print(response.headers);
-      print(response.reasonPhrase);
-    } else {
-      print('Failed to send email. Error code: ${response.statusCode}');
-    }
-  }
-
-  Future<void> sendSimpleMessage() async {
-    final String BASE_URL = "https://api.mailgun.net/v3/$domain/messages";
-    final String API_KEY = mailgunKey;
-
-    final String SENDER_EMAIL = "Excited User <azzouzmerw@gmail>";
-    final List<String> RECIPIENT_EMAILS = [
-      "azzouzmerw@gmail.com",
-      //"YOU@$domain"
-    ];
-    final String EMAIL_SUBJECT = "Hello";
-    final String EMAIL_TEXT = "Testing some Mailgun awesomeness!";
-
-    final http.Response response = await http.post(
-      Uri.parse(BASE_URL),
-      headers: {
-        'Authorization': 'Basic ' + base64Encode(utf8.encode('api:$API_KEY')),
-      },
-      body: {
-        'from': SENDER_EMAIL,
-        'to': RECIPIENT_EMAILS.join(','),
-        'subject': EMAIL_SUBJECT,
-        'text': EMAIL_TEXT,
-      },
-    );
-
-    if (response.statusCode == 200) {
-      print('Email sent successfully!');
-    } else {
-      print('Failed to send email. Error code: ${response.body}');
     }
   }
 }

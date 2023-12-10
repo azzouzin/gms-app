@@ -93,8 +93,8 @@ class _ProductsPageState extends State<ProductsPage> {
 
   Container card(String e, String imagepath) {
     return Container(
-      width: Get.width * 0.4,
-      height: Get.width * 0.3,
+      width: 500 * 0.4,
+      height: 500 * 0.3,
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
@@ -109,9 +109,9 @@ class _ProductsPageState extends State<ProductsPage> {
       child: Column(
         children: [
           Expanded(
-            //width: Get.width * 0.4,
+            //width: 500 * 0.4,
             child: Container(
-              width: Get.width * 0.4,
+              width: 500 * 0.4,
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -130,9 +130,9 @@ class _ProductsPageState extends State<ProductsPage> {
             ),
           ),
           Container(
-            width: Get.width * 0.4,
-            padding: EdgeInsets.symmetric(horizontal: Get.width * 0.03),
-            margin: EdgeInsets.symmetric(horizontal: Get.width * 0.01),
+            width: 500 * 0.4,
+            padding: EdgeInsets.symmetric(horizontal: 500 * 0.03),
+            margin: EdgeInsets.symmetric(horizontal: 500 * 0.01),
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(20),
@@ -168,7 +168,7 @@ class _ProductsPageState extends State<ProductsPage> {
 
   Container searchbare() {
     return Container(
-      width: Get.width * 0.9,
+      width: 500 * 0.9,
       height: Get.height * 0.075,
       decoration: BoxDecoration(
           border: Border.all(width: 0.5, color: Colors.grey),
@@ -185,7 +185,7 @@ class _ProductsPageState extends State<ProductsPage> {
         child: Row(
           children: [
             SizedBox(
-              width: Get.width * 0.77,
+              width: 500 * 0.77,
               child: const Directionality(
                 textDirection: TextDirection.rtl,
                 child: TextField(

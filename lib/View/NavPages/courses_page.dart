@@ -73,7 +73,7 @@ class _CoursesPageState extends State<CoursesPage> {
       child: InkWell(
         onTap: () {},
         child: Container(
-          width: Get.width * 0.9,
+          width: 500 * 0.9,
           //height: Get.height * 0.25,
           decoration: BoxDecoration(
             // border: Border.all(width: 0.5, color: Colors.grey),
@@ -84,7 +84,7 @@ class _CoursesPageState extends State<CoursesPage> {
           child: Column(
             children: [
               Container(
-                width: Get.width * 0.9,
+                width: 500 * 0.9,
                 height: Get.height * 0.25,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
@@ -97,7 +97,7 @@ class _CoursesPageState extends State<CoursesPage> {
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                  width: Get.width * 0.9,
+                  width: 500 * 0.9,
                   margin: const EdgeInsets.symmetric(vertical: 15),
                   padding: const EdgeInsets.all(5),
                   decoration: BoxDecoration(

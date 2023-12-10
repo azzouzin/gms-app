@@ -15,7 +15,7 @@ class MyAppBare extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         margin: const EdgeInsets.only(bottom: 10),
-        width: Get.width,
+        width: 500,
         height: Get.height * 0.1,
         decoration: BoxDecoration(
           boxShadow: [
@@ -49,8 +49,10 @@ class MyAppBare extends StatelessWidget {
             IconButton(
                 onPressed: () {
                   print('OPEN DRAWER');
-
+                  print(scaffoldKey.currentState?.isDrawerOpen);
                   scaffoldKey.currentState?.openDrawer();
+                  print(scaffoldKey.currentState?.isDrawerOpen);
+
                   // scaffoldKey.currentState!.isDrawerOpen;
                 },
                 icon: const Icon(Icons.more_horiz_sharp))

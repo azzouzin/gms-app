@@ -53,7 +53,7 @@ class _AbooutUsState extends State<AbooutUs> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20)),
                   height: Get.height * 0.2,
-                  width: Get.width * 0.9,
+                  width: 500 * 0.9,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Image.asset(
@@ -121,82 +121,85 @@ class _AbooutUsState extends State<AbooutUs> {
     );
   }
 
-  Container whoAreWe() {
-    return Container(
-      height: Get.height * 0.75,
-      width: Get.width,
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          Directionality(
-            textDirection: TextDirection.rtl,
-            child: Container(
-              height: Get.height * 0.65,
-              width: Get.width,
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
-              decoration: BoxDecoration(
-                  // border: Border.all(width: 0.5, color: Colors.grey),
-                  boxShadow: [
-                    BoxShadow(
-                        spreadRadius: 2,
-                        color: Colors.black.withOpacity(0.1),
-                        blurRadius: 2,
-                        offset: const Offset(0, 5))
+  Center whoAreWe() {
+    return Center(
+      child: Container(
+        height: Get.height * 0.8,
+        width: 400,
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            Directionality(
+              textDirection: TextDirection.rtl,
+              child: Container(
+                height: Get.height * 0.65,
+                width: 500,
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
+                decoration: BoxDecoration(
+                    // border: Border.all(width: 0.5, color: Colors.grey),
+                    boxShadow: [
+                      BoxShadow(
+                          spreadRadius: 2,
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 2,
+                          offset: const Offset(0, 5))
+                    ],
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20)),
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'كمقدم خدماتGMS  للصيانة العامة ،\n مؤسستنا تسعى جاهدة باستمرار. ',
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                          color: maink,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15),
+                    ),
+                    Text(
+                      'لتقديم خدمات آمنة و فعالة من حيث التكلفة للعملاء . ',
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                          color: maink,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15),
+                    ),
+                    verticalSpace,
+                    Text(
+                      ' في سعينا للتميز في الخدمات و نحن كمؤسسة قائمة بحد ذاتها قد شرعنا في إيجاد حلول متكاملة لخدمات الصيانة و الإصلاح و الترميم التي أدت إلى التوصل لحل لمشكلتين أولهما صعوبة إيجاد المصلح و ثانيهما العجز في نقل الجهاز المعطل نحن نقدم دائما لعملائنا خدمة ذات جودة عالية ، سهرا منا لتسهيل حياتكم من خلال إرسال فريق مختص في الصيانة بأنواعها إلى مكان حدوث العطل فإننا نقدم لكم خدمات متعددة تساعدكم على تلبية احتياجاتكم بمهنية ,كفاءة و ضمان إن كنت تريد الاستفادة من خدمات مؤسستنا ، إليك هذا التطبيق للتعرف على المزيد. ',
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                          color: maink,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15),
+                    ),
                   ],
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20)),
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Row(
                 children: [
-                  Text(
-                    'كمقدم خدماتGMS  للصيانة العامة ،\n مؤسستنا تسعى جاهدة باستمرار. ',
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                        color: maink,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15),
-                  ),
-                  Text(
-                    'لتقديم خدمات آمنة و فعالة من حيث التكلفة للعملاء . ',
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                        color: maink,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15),
-                  ),
-                  verticalSpace,
-                  Text(
-                    ' في سعينا للتميز في الخدمات و نحن كمؤسسة قائمة بحد ذاتها قد شرعنا في إيجاد حلول متكاملة لخدمات الصيانة و الإصلاح و الترميم التي أدت إلى التوصل لحل لمشكلتين أولهما صعوبة إيجاد المصلح و ثانيهما العجز في نقل الجهاز المعطل نحن نقدم دائما لعملائنا خدمة ذات جودة عالية ، سهرا منا لتسهيل حياتكم من خلال إرسال فريق مختص في الصيانة بأنواعها إلى مكان حدوث العطل فإننا نقدم لكم خدمات متعددة تساعدكم على تلبية احتياجاتكم بمهنية ,كفاءة و ضمان إن كنت تريد الاستفادة من خدمات مؤسستنا ، إليك هذا التطبيق للتعرف على المزيد. ',
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                        color: maink,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15),
+                  SizedBox(
+                    height: 500 * 0.4,
+                    width: 500 * 0.4,
+                    child: Image.asset('assets/logo.png'),
                   ),
                 ],
               ),
             ),
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Row(
-              children: [
-                SizedBox(
-                  height: Get.width * 0.4,
-                  width: Get.width * 0.4,
-                  child: Image.asset('assets/logo.png'),
-                ),
-              ],
-            ),
-          ),
-          Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: title('من نحن ؟', Iconsax.info_circle),
-              ))
-        ],
+            Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: title('من نحن ؟', Iconsax.info_circle),
+                ))
+          ],
+        ),
       ),
     );
   }

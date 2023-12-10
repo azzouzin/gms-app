@@ -55,7 +55,7 @@ class _WorkWithUsState extends State<WorkWithUs> {
             setState(() {});
           },
           child: Container(
-            width: Get.width * 0.9,
+            width: 500 * 0.9,
             height: Get.height * 0.15,
             decoration: BoxDecoration(
                 border: Border.all(width: 0.5, color: Colors.grey),
@@ -79,7 +79,7 @@ class _WorkWithUsState extends State<WorkWithUs> {
         ElevatedButton(
             style: ElevatedButton.styleFrom(
                 backgroundColor: maink,
-                fixedSize: Size(Get.width * 0.9, Get.height * 0.075),
+                fixedSize: Size(500 * 0.9, Get.height * 0.075),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10))),
             onPressed: () {
@@ -140,7 +140,7 @@ class _WorkWithUsState extends State<WorkWithUs> {
         children: [
           title(tit, iconData),
           Container(
-            width: Get.width * 0.9,
+            width: 500 * 0.9,
             height: 50,
             decoration: BoxDecoration(
                 border: Border.all(width: 0.5, color: Colors.grey),

@@ -20,7 +20,7 @@ class MyDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: Colors.transparent,
-      width: Get.width * 0.9,
+      width: 500 * 0.9,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
@@ -39,7 +39,7 @@ class MyDrawer extends StatelessWidget {
                     Get.to(const WorkWithUs());
                   },
                   child: Container(
-                    width: Get.width * 0.7,
+                    width: 500 * 0.7,
                     height: Get.height * 0.06,
                     decoration: BoxDecoration(
                         color: Colors.white,
@@ -60,7 +60,7 @@ class MyDrawer extends StatelessWidget {
                     Get.to(PromoPage());
                   },
                   child: Container(
-                    width: Get.width * 0.7,
+                    width: 500 * 0.7,
                     height: Get.height * 0.06,
                     decoration: BoxDecoration(
                         color: Colors.white,
@@ -81,7 +81,7 @@ class MyDrawer extends StatelessWidget {
                     Get.to(const AskExperts());
                   },
                   child: Container(
-                    width: Get.width * 0.7,
+                    width: 500 * 0.7,
                     height: Get.height * 0.06,
                     decoration: BoxDecoration(
                         color: Colors.white,
@@ -102,7 +102,7 @@ class MyDrawer extends StatelessWidget {
                     Get.to(const RateUS());
                   },
                   child: Container(
-                    width: Get.width * 0.7,
+                    width: 500 * 0.7,
                     height: Get.height * 0.06,
                     decoration: BoxDecoration(
                         color: Colors.white,
@@ -121,7 +121,7 @@ class MyDrawer extends StatelessWidget {
                 InkWell(
                   onTap: () => Get.to(const AbooutUs()),
                   child: Container(
-                    width: Get.width * 0.7,
+                    width: 500 * 0.7,
                     height: Get.height * 0.06,
                     decoration: BoxDecoration(
                         color: Colors.white,
@@ -140,7 +140,7 @@ class MyDrawer extends StatelessWidget {
                 InkWell(
                   onTap: () => Get.to(const ProductsPage()),
                   child: Container(
-                    width: Get.width * 0.7,
+                    width: 500 * 0.7,
                     height: Get.height * 0.06,
                     decoration: BoxDecoration(
                         color: Colors.white,
@@ -159,7 +159,7 @@ class MyDrawer extends StatelessWidget {
                 InkWell(
                   onTap: () => Get.to(const CoursesPage()),
                   child: Container(
-                    width: Get.width * 0.7,
+                    width: 500 * 0.7,
                     height: Get.height * 0.06,
                     decoration: BoxDecoration(
                         color: Colors.white,
@@ -188,7 +188,7 @@ class MyDrawer extends StatelessWidget {
                     }
                   },
                   child: Container(
-                    width: Get.width * 0.7,
+                    width: 500 * 0.7,
                     height: Get.height * 0.06,
                     decoration: BoxDecoration(
                         color: Colors.greenAccent,

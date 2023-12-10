@@ -34,7 +34,7 @@ class PromoPage extends StatelessWidget {
           child: title('إسأل  الصيانة', Iconsax.dollar_circle),
         ),
         Container(
-          width: Get.width * 0.9,
+          width: 500 * 0.9,
           height: Get.height * 0.7,
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(20)),
