@@ -176,7 +176,7 @@ class HomePageState extends State<HomePage> {
         Container(
           // color: Colors.deepOrange,
           // height: Get.height * 0.4,
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          // padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,

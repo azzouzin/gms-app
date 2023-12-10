@@ -22,76 +22,104 @@ class DemandForm extends StatefulWidget {
 }
 
 class _DemandFormState extends State<DemandForm> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: bgColor,
-      body: SafeArea(
-        child: mainWidget(),
-      ),
-    );
-  }
+  TextEditingController name = TextEditingController();
+  TextEditingController phone = TextEditingController();
+  TextEditingController wasf = TextEditingController();
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   File? imageFile = null;
-  Column mainWidget() {
-    TextEditingController name = TextEditingController();
-    TextEditingController phone = TextEditingController();
-    TextEditingController email = TextEditingController();
-    return Column(
-      children: [
-        MyAppBare(
-          scaffoldKey: _scaffoldKey,
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: title(' طلب خدمة ${widget.khidma}', Iconsax.wallet),
-        ),
-        textField('الاسم و اللقب', name, Iconsax.personalcard),
-        verticalSpace,
-        textField('رقم الهاتف', phone, Icons.phone),
-        verticalSpace,
-        textField('وصف العطل', email, Iconsax.pen_tool),
-        verticalSpace,
-        InkWell(
-          onTap: () {
-            setState(() {
-              _openImagePicker();
-            });
-            setState(() {});
-          },
-          child: Container(
-            width: Get.width * 0.9,
-            height: Get.height * 0.15,
-            decoration: BoxDecoration(
-                border: Border.all(width: 0.5, color: Colors.grey),
-                boxShadow: [
-                  BoxShadow(
-                      spreadRadius: 2,
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 2,
-                      offset: const Offset(0, 5))
-                ],
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20)),
-            child: Center(
-              child: Text(imageFile == null
-                  ? 'اظغط هنا لتحميل صورة العطل'
-                  : 'تم تحميل الصورة'),
+  final List<String> listOfTypes = [
+    'المنازل',
+    'المؤسسات العمومية ',
+    'المصانع',
+    'مستشفيات',
+    'المرافق العمومية ',
+    'الفنادق',
+  ];
+  String value = 'المنازل';
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      key: _scaffoldKey,
+      backgroundColor: bgColor,
+      body: SafeArea(
+        child: Column(
+          children: [
+            MyAppBare(
+              scaffoldKey: _scaffoldKey,
             ),
-          ),
-        ),
-        const Expanded(child: SizedBox()),
-        ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                backgroundColor: maink,
-                fixedSize: Size(Get.width * 0.9, Get.height * 0.075),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10))),
-            onPressed: () async {
-              // await sendSimpleMessage();
-              //   await sendEmail();
-              /*   var body = {
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: title(' طلب خدمة ${widget.khidma}', Iconsax.wallet),
+            ),
+            textField('الاسم و اللقب', name, Iconsax.personalcard),
+            verticalSpace,
+            textField('رقم الهاتف', phone, Icons.phone),
+            verticalSpace,
+            textField('وصف العطل', wasf, Iconsax.pen_tool),
+            verticalSpace,
+            InkWell(
+              onTap: () {
+                setState(() {
+                  _openImagePicker();
+                });
+                setState(() {});
+              },
+              child: Container(
+                width: Get.width * 0.9,
+                height: Get.height * 0.15,
+                decoration: BoxDecoration(
+                    border: Border.all(width: 0.5, color: Colors.grey),
+                    boxShadow: [
+                      BoxShadow(
+                          spreadRadius: 2,
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 2,
+                          offset: const Offset(0, 5))
+                    ],
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20)),
+                child: Center(
+                  child: Text(imageFile == null
+                      ? 'اظغط هنا لتحميل صورة العطل'
+                      : 'تم تحميل الصورة'),
+                ),
+              ),
+            ),
+            verticalSpace,
+            Container(
+              width: Get.width * 0.9,
+              child: DropdownButton(
+                  isExpanded: true,
+                  dropdownColor: Colors.white,
+                  value: value,
+                  items: listOfTypes
+                      .map((e) => DropdownMenuItem(
+                            value: e,
+                            child: Text(
+                              e,
+                              style: TextStyle(color: maink),
+                            ),
+                          ))
+                      .toList(),
+                  onChanged: (v) {
+                    setState(() {
+                      value = v!;
+                    });
+                  }),
+            ),
+            const Expanded(child: SizedBox()),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: maink,
+                    fixedSize: Size(Get.width * 0.9, Get.height * 0.075),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10))),
+                onPressed: () async {
+                  // await sendSimpleMessage();
+                  //   await sendEmail();
+                  /*   var body = {
                 'from': 'Jane Smith <jane.smith@somecompany.com>',
                 'to': [
                   'john.smith@somedomain.com',
@@ -113,53 +141,56 @@ class _DemandFormState extends State<DemandForm> {
                   body: json.encode(body));
               print(resp.body);
               print(resp.statusCode);*/
-              //  Get.back();
-              String? encodeQueryParameters(Map<String, String> params) {
+                  //  Get.back();
+                  /*  String? encodeQueryParameters(Map<String, String> params) {
                 return params.entries
                     .map((MapEntry<String, String> e) =>
                         '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
                     .join('&');
               }
+*/
+                  final Email email = Email(
+                    body:
+                        'رقم هاتفك هو : ${phone.text}\n الاسم و اللقب   : ${name.text} \n وصف العطل هو : ${wasf.text}',
+                    subject: 'طلب خدمة ${widget.khidma}  لل$value ',
+                    recipients: ['maintenancegeneral2024@gmail.com'],
+                    // cc: ['cc@example.com'],
+                    //bcc: ['bcc@example.com'],
+                    attachmentPaths: imageFile == null ? [] : [imageFile!.path],
+                    isHTML: false,
+                  );
 
-              final Email email = Email(
-                body: 'Email body',
-                subject: 'Email subject',
-                recipients: ['gmsmaintenance2024@gmail.com'],
-                // cc: ['cc@example.com'],
-                //bcc: ['bcc@example.com'],
-                attachmentPaths: [imageFile!.path],
-                isHTML: false,
-              );
-
-              await FlutterEmailSender.send(email);
+                  await FlutterEmailSender.send(email);
 
 // ···
-              //   await sendEmailurlLuncher(phone, encodeQueryParameters, name, email);
+                  //   await sendEmailurlLuncher(phone, encodeQueryParameters, name, email);
 
-              /*    bool b = await canLaunchUrl(emailLaunchUri);
+                  /*    bool b = await canLaunchUrl(emailLaunchUri);
               if (b) {
                 await launchUrl(emailLaunchUri);
               } else {
                 log(b.toString());
               }
       */
-              Get.snackbar(
-                'تم إرسال طلبك بنجاح ',
-                'سنقوم برد عليك في أقرب  وقت',
-                snackPosition: SnackPosition.BOTTOM,
-                backgroundColor: Colors.greenAccent.withOpacity(0.5),
-              );
-              Get.back();
-            },
-            child: const Text(
-              'إرسال',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 20),
-            )),
-        verticalSpace,
-      ],
+                  Get.snackbar(
+                    'تم إرسال طلبك بنجاح ',
+                    'سنقوم برد عليك في أقرب  وقت',
+                    snackPosition: SnackPosition.BOTTOM,
+                    backgroundColor: Colors.greenAccent.withOpacity(0.5),
+                  );
+                  Get.back();
+                },
+                child: const Text(
+                  'إرسال',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w800,
+                      fontSize: 20),
+                )),
+            verticalSpace,
+          ],
+        ),
+      ),
     );
   }
 
